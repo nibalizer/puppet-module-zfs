@@ -1,14 +1,24 @@
 # A class to manage ZFS on ubuntu hosts
 class zfs(
+  $fuse = false,
 ){
 
-  apt::ppa { 'ppa:zfs-native/stable': }
+  if $fuse { 
 
-  package {'ubuntu-zfs':
-    ensure => latest,
-  }
-  package {'zfs-auto-snapshot':
-    ensure => latest,
+    package { 'zfs-fuse':
+      ensure => present,
+    }
+
+  } else {
+
+    apt::ppa { 'ppa:zfs-native/stable': }
+
+    package {'ubuntu-zfs':
+      ensure => latest,
+    }
+    package {'zfs-auto-snapshot':
+      ensure => latest,
+    }
   }
 
 

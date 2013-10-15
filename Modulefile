@@ -1,4 +1,4 @@
-name         'niblizer-zfs'
+name         'nibalizer-zfs'
 version      '1.0.0'
 
 author       'Spencer Krum'

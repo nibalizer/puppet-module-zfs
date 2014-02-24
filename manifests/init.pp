@@ -11,18 +11,17 @@ class zfs(
 
   } else {
 
-    include apt
-    package {'python-software-properties':
-      ensure => present,
+    stage { 'ppa':
+      before => Stage['main'],
     }
-
-    apt::ppa { 'ppa:zfs-native/stable/ubuntu': 
-      require => Package['python-software-properties'], 
-    }
-
+    
+    # install the ppa repos
+    class {'repo':
+      stage => ppa,
+    }->
     package {'ubuntu-zfs':
       ensure => latest,
-    }
+    }->
     package {'zfs-auto-snapshot':
       ensure => latest,
     }

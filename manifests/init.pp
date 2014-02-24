@@ -11,7 +11,14 @@ class zfs(
 
   } else {
 
-    apt::ppa { 'ppa:zfs-native/stable': }
+    include apt
+    package {'python-software-properties':
+      ensure => present,
+    }
+
+    apt::ppa { 'ppa:zfs-native/stable/ubuntu': 
+      require => Package['python-software-properties'], 
+    }
 
     package {'ubuntu-zfs':
       ensure => latest,
@@ -20,6 +27,4 @@ class zfs(
       ensure => latest,
     }
   }
-
-
 }

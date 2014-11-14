@@ -1,6 +1,6 @@
 {
   "name": "nibalizer-zfs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Spencer Krum",
   "summary": "Install and configure zfs",
   "license": "ASL 2.0",
